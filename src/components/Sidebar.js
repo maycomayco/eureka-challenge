@@ -1,44 +1,70 @@
-import React from "react";
-import { Stack, Heading } from "@chakra-ui/layout"
+import React, { useState } from "react";
+// import { Stack, Heading } from "@chakra-ui/layout"
 import {
 	Checkbox,
 	RangeSlider,
 	RangeSliderTrack,
 	RangeSliderFilledTrack,
 	RangeSliderThumb,
-	Divider
+	Divider,
+	Box,
+	Stack,
+	Heading
 } from "@chakra-ui/react"
 
-const Sidebar = () => {
+const Sidebar = ({ productTypes, productTypesFilter, setProductTypeFilter }) => {
+
+	const handleOnChange = e => {
+		const checked = e.target.value;
+
+		// check if the filter has already in the state
+		if (productTypesFilter.includes(checked)) {
+			setProductTypeFilter(
+				productTypesFilter.filter( i => i !== checked)
+			)
+			return;
+		}
+
+		setProductTypeFilter([
+			...productTypesFilter,
+			checked
+		])
+	}
 
 	return (
-        <Stack minW="20vw" p={4}>
-			<Heading size="md">Filter Results</Heading>
-			<Divider />
-			<Heading size="sm">Product type</Heading>
+        <Stack minW="20vw" p={4} spacing={7}>
 			<Stack spacing={2}>
-				<Checkbox
-				// isChecked={checkedItems[0]}
-				// onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
-				>
-				Child Checkbox 1
-				</Checkbox>
-				<Checkbox
-				// isChecked={checkedItems[1]}
-				// onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
-				>
-				Child Checkbox 2
-				</Checkbox>
+				<Heading size="sm">Product types</Heading>
+				<Divider />
+				<Stack>
+					{
+						productTypes.map( p => (
+							<Checkbox
+								key={p}
+								value={p}
+								name={p}
+								onChange={handleOnChange}
+							>
+								{p}
+							</Checkbox>
+						))
+					}s
+				</Stack>
 			</Stack>
-			<Heading size="sm">Price type</Heading>
-			<Stack>
-				<RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]}>
-				<RangeSliderTrack>
-					<RangeSliderFilledTrack />
-				</RangeSliderTrack>
-				<RangeSliderThumb index={0} />
-				<RangeSliderThumb index={1} />
-				</RangeSlider>
+			<Stack spacing={2}>
+				<Heading size="sm">Price type</Heading>
+				<Divider />
+				<Box py={11}>
+					{/* <Stack> */}
+						<RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]} >
+							<RangeSliderTrack>
+								<RangeSliderFilledTrack />
+							</RangeSliderTrack>
+							<RangeSliderThumb index={0} />
+							<RangeSliderThumb index={1} />
+						</RangeSlider>
+					{/* </Stack> */}
+				</Box>
 			</Stack>
 		</Stack>
 	);

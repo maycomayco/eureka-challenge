@@ -1,26 +1,50 @@
 const secretKey = '1DIPIkKeq8';
 
-export const getItems = async () => {
-	// const query = encodeURI(category);
+export const getProductsBySubcategory = async (filters) => {
 	const url = `https://kabsa.yallababy.com/api/v1/products/best-selling-products-by-subcategory`;
 
-	// revisar doc de fetch
 	const resp = await fetch(url, {
 		headers: {
 			'secretKey': secretKey
 		}
 	});
-	const data = await resp.json(); //obtengo solo la property que necesito
 
-	// console.log(data);
-	// esto deberia ser un transform, de lo que me devuelve la API original y lo que realmente necesita mi App
-	// const gifs = data.map( img => {
-	// 	return {
-	// 		id: img.id,
-	// 		title: img.title,
-	// 		url: img.images?.fixed_height_small.url, //con (?) decimos que si vienen images entonces lo utilizamos
-	// 	};
-	// });
+	const data = await resp.json();
 
-	return data;
+	let products = transformResponse(data)
+
+	// I use this like an option to from the API to filter
+	if (filters.length) {
+		return filterProducts(filters, products);
+	}
+
+	// if we don't has filters or sort activated, default return
+	return products;
 };
+
+// filter products with a filter array
+const filterProducts = (filters, products) => {
+	return products.filter( product => filters.includes(product.productType))
+}
+
+// I transform all the information into what I really need
+const transformResponse = data => {
+	return data.map( p => {
+		const variants = p.variants.map( v => {
+			return {
+				variantId: v.id,
+				price: v.price
+			}
+		})
+
+		return {
+			id: p.id,
+			title: p.title,
+			productType: p.product_type,
+			imageSrc: p.image.src,
+			imageAlt: p.image.alt,
+			quantitySold: p.quantitySold,
+			variants: variants
+		}
+	});
+}

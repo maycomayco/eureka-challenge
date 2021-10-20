@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Stack, Image, Divider, Flex } from "@chakra-ui/react";
 
 const ListProduct = ({ product }) => {
-	const { image: { src, alt }, title, product_type } = product;
+	const { title, productType, imageSrc, imageAlt, quantitySold } = product;
 
 	return (
 		<Stack
@@ -16,8 +16,8 @@ const ListProduct = ({ product }) => {
 		>
 			<Flex className="wrapper-image">
 				<Image
-					src={src}
-					alt={alt}
+					src={imageSrc}
+					alt={imageAlt}
 					objectFit="contain"
 					fallbackSrc="https://via.placeholder.com/150"
 					boxSize="150px"
@@ -32,10 +32,10 @@ const ListProduct = ({ product }) => {
 					{title}
 				</Box>
 				<Box as="span" color="gray.600" fontSize="sm">
-					{product_type}
+					{productType}
 				</Box>
-				<Box>$1111</Box>
-				<Box>Quantity sold</Box>
+				{/* <Box>$1111</Box> */}
+				<Box as="span" color="gray.600" fontSize="sm">Quantity sold: {quantitySold}</Box>
 			</Stack>
 
 		</Stack>
