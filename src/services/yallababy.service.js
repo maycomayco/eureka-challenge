@@ -3,23 +3,28 @@ const secretKey = '1DIPIkKeq8';
 export const getProductsBySubcategory = async (filters) => {
 	const url = `https://kabsa.yallababy.com/api/v1/products/best-selling-products-by-subcategory`;
 
-	const resp = await fetch(url, {
-		headers: {
-			'secretKey': secretKey
+	try {
+		const resp = await fetch(url, {
+			headers: {
+				'secretKey': secretKey
+			}
+		});
+
+		const data = await resp.json();
+
+		let products = transformResponse(data)
+
+		// I use this like an option to from the API to filter
+		if (filters.length) {
+			return filterProducts(filters, products);
 		}
-	});
 
-	const data = await resp.json();
+		// if we don't has filters or sort activated, default return
+		return products;
 
-	let products = transformResponse(data)
-
-	// I use this like an option to from the API to filter
-	if (filters.length) {
-		return filterProducts(filters, products);
+	} catch (error) {
+		console.log(error);
 	}
-
-	// if we don't has filters or sort activated, default return
-	return products;
 };
 
 // filter products with a filter array

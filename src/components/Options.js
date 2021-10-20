@@ -56,7 +56,7 @@ const Options = ({ quantity, grid, setGrid }) => {
 				</Box>
 			</Flex>
 			<Stack
-				px={1}
+				px={4}
 				direction="row"
 				alignItems="center"
 			>
@@ -66,9 +66,9 @@ const Options = ({ quantity, grid, setGrid }) => {
 					size="sm"
 					borderRadius="md"
 				>
-					<option value="option1">Option 1</option>
-					<option value="option2">Option 2</option>
-					<option value="option3">Option 3</option>
+					<option value="option1">A - Z</option>
+					<option value="option2">Price: High to Low</option>
+					<option value="option3">Price: Low to High</option>
 				</Select>
 			</Stack>
 		</Flex>
