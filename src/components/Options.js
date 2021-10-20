@@ -1,9 +1,20 @@
 import React from "react"
-import { Flex, Box, Select, Icon } from "@chakra-ui/react"
-import { Link, Stack, Text } from "@chakra-ui/layout"
+import {
+	Flex,
+	Box,
+	Select,
+	Icon,
+	useMediaQuery,
+	Link,
+	Stack,
+	Text
+} from "@chakra-ui/react"
+
 import { AiOutlineAppstore, AiOutlineUnorderedList } from "react-icons/ai";
 
 const Options = ({ quantity, grid, setGrid }) => {
+
+	const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
 
 	// Handle kind of layout to render in Main.js
 	const handleClickGrid = () => {
@@ -23,14 +34,15 @@ const Options = ({ quantity, grid, setGrid }) => {
 			py={2}
 			className="options"
 		>
-			<Text
-				px={{sm:0, md:4}}
-				flexGrow={2}
-				className="options__quantity"
-				fontSize="sm"
-			>
-				Available deals: {quantity}
-			</Text>
+			{
+				isLargerThan768 &&
+					<Text
+						px={{sm:0, md:4}}
+						flexGrow={2}
+						className="options__quantity"
+						fontSize="sm"
+					>Available deals: {quantity}</Text>
+			}
 			<Flex px={{sm:0, md:2, lg:4}}>
 				<Box mx={1}>
 					<Link onClick={handleClickGrid}>

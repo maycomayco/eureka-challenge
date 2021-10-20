@@ -66,8 +66,7 @@ function App() {
                   setProductTypeFilter={setProductTypeFilter}
                 />
             }
-            <Flex flexGrow={2}>
-            <Stack>
+            <Stack w="100%">
               <Options
                 quantity={products.length}
                 grid={grid}
@@ -75,7 +74,6 @@ function App() {
               />
               <Main products={products} grid={grid} />
             </Stack>
-            </Flex>
           </Flex>
         </Container>
       </Box>
