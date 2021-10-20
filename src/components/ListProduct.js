@@ -1,30 +1,33 @@
 import React from "react";
-import { Box, Image, Stack, Divider, Flex } from "@chakra-ui/react"
+import { Box, Stack, Image, Divider, Flex } from "@chakra-ui/react";
 
-const GridProduct = ({ product }) => {
+const ListProduct = ({ product }) => {
 	const { image: { src, alt }, title, product_type } = product;
 
 	return (
 		<Stack
-			maxW="sm"
+			bgColor="white"
 			borderWidth="1px"
 			borderRadius="lg"
-		 	bgColor="white"
+			direction="row"
+			p={4}
+			spacing={4}
+			h="184px"
 		>
-			<Flex className="wrapper-image" h="200px" p={2}>
+			<Flex className="wrapper-image">
 				<Image
 					src={src}
 					alt={alt}
 					objectFit="contain"
 					fallbackSrc="https://via.placeholder.com/150"
+					boxSize="150px"
 				/>
 			</Flex>
-			<Divider />
-			<Box p="6">
+			<Divider orientation="vertical" color="gray.900"/>
+			<Stack className="wrapper-info" py={2}>
 				<Box
 					fontWeight="semibold"
 					as="h4"
-					minH="50px"
 				>
 					{title}
 				</Box>
@@ -33,9 +36,10 @@ const GridProduct = ({ product }) => {
 				</Box>
 				<Box>$1111</Box>
 				<Box>Quantity sold</Box>
-			</Box>
-		</Stack>
-	)
-}
+			</Stack>
 
-export default GridProduct;
+		</Stack>
+	);
+};
+
+export default ListProduct;

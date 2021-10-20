@@ -10,7 +10,11 @@ import Main from "./components/Main";
 
 
 function App() {
+  // array of products
   const [ products, setProducts ] = useState([]);
+
+  // type of product layout
+  const [ grid, setGrid ] = useState(false);
 
 
   useEffect(() =>{
@@ -44,8 +48,12 @@ function App() {
             <Sidebar />
             <Flex flexGrow={2}>
             <Stack width="100%">
-              <Options quantity={products.length}/>
-              <Main products={products}/>
+              <Options
+                quantity={products.length}
+                grid={grid}
+                setGrid={setGrid}
+              />
+              <Main products={products} grid={grid} />
             </Stack>
             </Flex>
           </Flex>

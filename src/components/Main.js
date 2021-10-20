@@ -3,11 +3,14 @@ import { Box } from "@chakra-ui/layout";
 import GridProducts from "./GridProducts"
 import ListProducts from "./ListProducts";
 
-const Main = ({products}) => {
+const Main = ({ products , grid}) => {
 	return (
 		<Box py={2} px={4}>
-			{/* <GridProducts products={products}/> */}
-			<ListProducts products={products} />
+			{
+				grid
+				? <GridProducts products={products}/>
+				: <ListProducts products={products} />
+			}
 		</Box>
 	);
 };
