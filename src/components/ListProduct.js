@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Stack, Image, Divider, Flex } from "@chakra-ui/react";
+import {
+	Box,
+	Stack,
+	Image,
+	Divider,
+	Flex ,
+	Badge
+} from "@chakra-ui/react";
 
 const ListProduct = ({ product }) => {
 	const { title, productType, imageSrc, imageAlt, quantitySold } = product;
@@ -13,8 +20,12 @@ const ListProduct = ({ product }) => {
 			p={4}
 			spacing={4}
 			h="184px"
+			overflow="hidden"
 		>
-			<Flex className="wrapper-image">
+			<Flex
+				className="wrapper-image"
+				minW="150px"
+			>
 				<Image
 					src={imageSrc}
 					alt={imageAlt}
@@ -32,10 +43,14 @@ const ListProduct = ({ product }) => {
 					{title}
 				</Box>
 				<Box as="span" color="gray.600" fontSize="sm">
-					{productType}
+					<Badge>{productType}</Badge>
 				</Box>
-				{/* <Box>$1111</Box> */}
-				<Box as="span" color="gray.600" fontSize="sm">Quantity sold: {quantitySold}</Box>
+
+				<Box
+					as="span"
+					color="gray.600"
+					fontSize="xs"
+				>Quantity sold: {quantitySold}</Box>
 			</Stack>
 
 		</Stack>

@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Image, Stack, Divider, Flex } from "@chakra-ui/react"
+import {
+	Box,
+	Image,
+	Stack,
+	Divider,
+	Flex,
+	Badge
+} from "@chakra-ui/react"
 
 const GridProduct = ({ product }) => {
 	const { title, productType, imageSrc, imageAlt, quantitySold } = product;
@@ -28,11 +35,16 @@ const GridProduct = ({ product }) => {
 				>
 					{title}
 				</Box>
-				<Box as="span" color="gray.600" fontSize="sm">
-					{productType}
+				<Box
+					as="span"
+					color="gray.600" fontSize="sm"
+				>
+					<Badge>{productType}</Badge>
 				</Box>
-				{/* <Box>$1111</Box> */}
-				<Box>Quantity sold: {quantitySold}</Box>
+				<Box
+					color="gray.600"
+					fontSize="xs"
+				>Quantity sold: {quantitySold}</Box>
 			</Box>
 		</Stack>
 	)

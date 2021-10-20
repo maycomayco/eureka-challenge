@@ -5,7 +5,7 @@ import GridProduct from "./GridProduct"
 
 const GridProducts = ({products}) => {
 	return (
-		<SimpleGrid columns={[2, null, 3]} spacing="60px">
+		<SimpleGrid columns={{sm: 2, md: 2, xl: 3}} spacing="60px">
 			{
 				products.map( p => <GridProduct key={p.id} product={p}/>)
 			}

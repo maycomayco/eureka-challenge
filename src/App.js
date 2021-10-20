@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { ChakraProvider, Box, Flex } from "@chakra-ui/react"
-import { Container, Stack } from "@chakra-ui/layout";
+import {
+  ChakraProvider,
+  Box,
+  Flex,
+  Container,
+  Stack,
+  useMediaQuery
+ } from "@chakra-ui/react"
 
 import Header from "./components/Header"
 import Sidebar from "./components/Sidebar"
@@ -8,9 +14,6 @@ import Options from "./components/Options"
 import Main from "./components/Main";
 
 import { getProductsBySubcategory } from "./services/Yallababy.service";
-
-// import { getItems } from "./services/yallababy.service";
-
 
 function App() {
   // products from API
@@ -25,12 +28,14 @@ function App() {
   // type of product layout
   const [ grid, setGrid ] = useState(false);
 
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)")
 
   useEffect(() =>{
     const getProducts = async () => {
       const products = await getProductsBySubcategory(productTypesFilter);
       setProducts(products);
 
+      // I get the product types only in the first render of the page
       if (!productTypes.length) {
         // Get the product types here to avoid make another GET
         const getProductTypes = () => {
@@ -53,13 +58,16 @@ function App() {
         <Header />
         <Container maxW="container.xl">
           <Flex minH="70vh">
-            <Sidebar
-              productTypes={productTypes}
-              productTypesFilter={productTypesFilter}
-              setProductTypeFilter={setProductTypeFilter}
-            />
+            {
+              isLargerThan768 &&
+                <Sidebar
+                  productTypes={productTypes}
+                  productTypesFilter={productTypesFilter}
+                  setProductTypeFilter={setProductTypeFilter}
+                />
+            }
             <Flex flexGrow={2}>
-            <Stack width="100%">
+            <Stack>
               <Options
                 quantity={products.length}
                 grid={grid}

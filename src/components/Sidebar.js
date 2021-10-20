@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-// import { Stack, Heading } from "@chakra-ui/layout"
+import React from "react";
+
 import {
 	Checkbox,
 	RangeSlider,
@@ -32,14 +32,26 @@ const Sidebar = ({ productTypes, productTypesFilter, setProductTypeFilter }) => 
 	}
 
 	return (
-        <Stack minW="20vw" p={4} spacing={7}>
+        <Stack
+			minW="20vw"
+			py={4}
+			px={{md:0, lg:4}}
+			spacing={7}
+			className="sidebar"
+		>
 			<Stack spacing={2}>
-				<Heading size="sm">Product types</Heading>
+				<Heading
+					size="sm"
+					className="sidebar__title"
+				>
+					Product types
+				</Heading>
 				<Divider />
-				<Stack>
+				<Stack className="sidebar__wrapper-checkbox">
 					{
 						productTypes.map( p => (
 							<Checkbox
+								className="product-type"
 								key={p}
 								value={p}
 								name={p}
@@ -52,18 +64,19 @@ const Sidebar = ({ productTypes, productTypesFilter, setProductTypeFilter }) => 
 				</Stack>
 			</Stack>
 			<Stack spacing={2}>
-				<Heading size="sm">Price type</Heading>
+				<Heading
+					size="sm"
+					className="sidebar__title"
+				>Price type</Heading>
 				<Divider />
 				<Box py={11}>
-					{/* <Stack> */}
-						<RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]} >
-							<RangeSliderTrack>
-								<RangeSliderFilledTrack />
-							</RangeSliderTrack>
-							<RangeSliderThumb index={0} />
-							<RangeSliderThumb index={1} />
-						</RangeSlider>
-					{/* </Stack> */}
+					<RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]} >
+						<RangeSliderTrack>
+							<RangeSliderFilledTrack />
+						</RangeSliderTrack>
+						<RangeSliderThumb index={0} />
+						<RangeSliderThumb index={1} />
+					</RangeSlider>
 				</Box>
 			</Stack>
 		</Stack>
