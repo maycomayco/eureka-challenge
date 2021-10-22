@@ -1,7 +1,7 @@
 import React from "react";
 import { SimpleGrid } from "@chakra-ui/layout";
 
-import GridProduct from "./GridProduct"
+import GridProduct from "../Grid/GridProduct"
 
 const GridProducts = ({products}) => {
 	return (

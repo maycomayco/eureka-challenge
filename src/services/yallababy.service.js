@@ -38,7 +38,9 @@ const transformResponse = data => {
 		const variants = p.variants.map( v => {
 			return {
 				variantId: v.id,
-				price: v.price
+				price: v.price,
+				title: v.title,
+				diapersName: v.option2
 			}
 		})
 
