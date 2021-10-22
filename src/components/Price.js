@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
-const Price = priceToShow => {
-	return (
-		<p>Precio: {priceToShow}</p>
-	);
-};
+const Price = (priceToShow) => (
+  <p>
+    Precio:
+    {priceToShow}
+  </p>
+);
 
 export default Price;

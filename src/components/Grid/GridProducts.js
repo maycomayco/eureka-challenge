@@ -1,16 +1,20 @@
-import React from "react";
-import { SimpleGrid } from "@chakra-ui/layout";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import GridProduct from "../Grid/GridProduct"
+import { SimpleGrid } from '@chakra-ui/react';
 
-const GridProducts = ({products}) => {
-	return (
-		<SimpleGrid columns={{sm: 2, md: 2, xl: 3}} spacing="60px">
-			{
-				products.map( p => <GridProduct key={p.id} product={p}/>)
-			}
-		</SimpleGrid>
-	)
-}
+import GridProduct from './GridProduct';
+
+const GridProducts = ({ products }) => (
+  <SimpleGrid columns={{ sm: 2, md: 2, xl: 3 }} spacing="60px">
+    {
+        products.map((p) => <GridProduct key={p.id} product={p} />)
+      }
+  </SimpleGrid>
+);
+
+GridProducts.propTypes = {
+  products: PropTypes.object.isRequired,
+};
 
 export default GridProducts;
