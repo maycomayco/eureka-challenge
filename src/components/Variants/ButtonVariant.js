@@ -34,6 +34,7 @@ const ButtonVariant = ({
         borderColor="gray.200"
         m={1}
         onClick={handleButtonClick}
+        minW="fit-content"
       >
         {formatedVariantName()}
       </Button>

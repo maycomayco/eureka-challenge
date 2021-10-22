@@ -35,10 +35,10 @@ function App() {
   // load products
   useEffect(() => {
     const getProducts = async () => {
-      const productsBySubcategory = await getProductsBySubcategory(
+      const products = await getProductsBySubcategory(
         productTypesFilter, order,
       );
-      setProducts(productsBySubcategory);
+      setProducts(products);
 
       // I get the product types only in the first render of the page
       if (!productTypes.length) {

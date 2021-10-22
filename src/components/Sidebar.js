@@ -90,7 +90,7 @@ const Sidebar = ({
 };
 
 Sidebar.propTypes = {
-  productTypes: PropTypes.string.isRequired,
+  productTypes: PropTypes.array.isRequired,
   productTypesFilter: PropTypes.array.isRequired,
   setProductTypeFilter: PropTypes.func.isRequired,
 };

@@ -19,7 +19,7 @@ const Main = ({ products, grid }) => (
 );
 
 Main.propTypes = {
-  products: PropTypes.object.isRequired,
+  products: PropTypes.array.isRequired,
   grid: PropTypes.bool.isRequired,
 };
 
